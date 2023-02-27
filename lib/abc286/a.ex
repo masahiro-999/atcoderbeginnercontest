@@ -27,24 +27,16 @@ defmodule Abc286.A do
     s = s - 1
 
     b =
-      if p == 0 do
-        []
-      else
-        Enum.slice(a, 0..(p - 1))
-      end ++
-        Enum.slice(a, r..s) ++
-        if q + 1 < r do
-          Enum.slice(a, (q + 1)..(r - 1))
-        else
-          []
-        end ++
-        Enum.slice(a, p..q) ++
-        if s == n - 1 do
-          []
-        else
-          Enum.slice(a, (s + 1)..(n - 1))
-        end
+        slice(a, 0, p) ++
+        slice(a, r, s + 1) ++
+        slice(a, q + 1, r) ++
+        slice(a, p , q  + 1) ++
+        slice(a, s + 1, n)
 
     Enum.join(b, " ")
+  end
+
+  def slice(a, s, e) do
+    Enum.slice(a, s, e - s)
   end
 end
