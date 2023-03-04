@@ -1,46 +1,66 @@
-defmodule AbcXXXXTest do
+defmodule Abc2XXXTest do
   use ExUnit.Case
-
   alias AbcXXX.X, as: Target
 
-  test "test1" do
-    ret =
-      """
+  setup do
+    inout = [
+      [
+        """
 
-      """
-      |> Target.solve()
+        """,
+        ""
+      ],
+      [
+        """
 
-    assert ret == ""
+        """,
+        ""
+      ],
+      [
+        """
+
+        """,
+        ""
+      ],
+      [
+        """
+
+        """,
+        ""
+      ],
+    ]
+
+    {:ok, inout: inout}
   end
 
-  test "test2" do
-    ret =
-      """
+  test "solve all", %{inout: inout} do
+    inout
+    |> Enum.map(fn [input, output] ->
+      input
+      |> Target.parse()
+      |> IO.inspect(label: "input")
 
-      """
-      |> Target.solve()
-
-    assert ret == ""
+      assert Target.solve(input) == output
+    end)
   end
 
-  test "test3" do
-    ret =
-      """
+  # test "solve 1", %{inout: inout} do
+  #   [input, output] = hd(inout)
+  #   assert Abc286.A.solve(input) == output
+  # end
 
-      """
-      |> Target.solve()
+  # test "solve 2", %{inout: inout} do
+  #   [input, output] = hd(tl(inout))
+  #   assert Abc286.A.solve(input) == output
+  # end
 
-    assert ret == ""
-  end
+  # test "solve 3", %{inout: inout} do
+  #   [input, output] = hd(tl(tl(inout)))
+  #   assert Abc286.A.solve(input) == output
+  # end
 
-  test "test4" do
-    ret =
-      """
-
-      """
-      |> Target.solve()
-
-    assert ret == ""
-  end
-
+  # test "solve 4", %{inout: inout} do
+  #   [input, output] = hd(tl(tl(tl(inout))))
+  #   assert Abc286.A.solve(input) == output
+  # end
 end
