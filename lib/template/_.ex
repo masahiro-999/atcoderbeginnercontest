@@ -7,11 +7,11 @@ defmodule AbcXXX.X do
   def solve(input) do
     {} =
       input
-      |> perse()
+      |> parse()
 
   end
 
-  def perse(input) do
+  def parse(input) do
 
     # 2行パタン
     [head, data] =
